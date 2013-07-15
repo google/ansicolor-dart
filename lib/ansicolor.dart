@@ -48,6 +48,11 @@ class AnsiPen {
    */
   String get up => color_disabled ? "" : ANSI_DEFAULT;
 
+  /**
+   * Write the [msg] with the pen's current settings
+   */
+  String write(String msg) => "${down}$msg${up}";
+
   black({bool bg: false, bool bold: false})    => _std(0, bold, bg);
   red({bool bg: false, bool bold: false})      => _std(1, bold, bg);
   green({bool bg: false, bool bold: false})    => _std(2, bold, bg);

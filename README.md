@@ -7,26 +7,19 @@ Easy to disable for production, just set `color_disabled = false` and all codes 
 
 Example
 ------
+Note: Be mindful of contrasting colors.  If you set "bright white" foreground and don't adjust the background, you'll have a bad time with lighter terminals.  
 
 Foreground to bright white with default background:
 ```dart
 AnsiPen pen = new AnsiPen()..white(bold: true);
-print("${pen}Bright white foreground");
+print(pen.write("Bright white foreground") + " this text is default fg/bg");
 ```
 
 Background as a peach, foreground as white:
 ```dart
 AnsiPen pen = new AnsiPen()..white()..rgb(r: 1.0, g: 0.8, b: 0.2);
-print("${pen}White foreground with a peach background");
+print(pen("White foreground with a peach background"));
 ```
-
-Reset all pen colors in the terminal:
-```dart
-AnsiPen pen = new AnsiPen()..black()..white(bg: true);
-print("${pen}Black text on white background ${pen.up}that is now reset to terminal defaults");
-```
-
-
 
 Rainbow Demo
 ------
