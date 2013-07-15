@@ -1,4 +1,4 @@
-name: ansicolor_dart
+name: ansicolor
 version: 0.0.1
 author: John Thomas McDole <codefu@google.com>
 description: An xterm 256 color support library
