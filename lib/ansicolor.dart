@@ -14,6 +14,7 @@ library ansicolor;
  */
 bool color_disabled = false;
 
+
 /**
  * Pen attributes for foreground and background colors.
  * Use the pen in string interpolation to output ansi codes.
@@ -21,6 +22,17 @@ bool color_disabled = false;
  */
 class AnsiPen {
 
+  /**
+   * Treat a pen instance as a function such that pen("msg") is the same as
+   * pen.write("msg").
+   */
+  call(String msg) => write(msg);
+
+  /**
+   * Allow pen colors to be used in a string.
+   * Note: Once the pen is down, its attributes remain in effect till they are
+   * changed by another pen or [up].
+   */
   String toString() {
     if (color_disabled) return "";
     if (_pen != null) return _pen;
@@ -39,19 +51,20 @@ class AnsiPen {
   }
 
   /**
-   * Return control codes to change the terminal colors
+   * Return control codes to change the terminal colors.
    */
   String get down => this.toString();
 
   /**
-   * Shortcut to reseting the default colors
+   * Reset all pen attributes in the terminal.
    */
   String get up => color_disabled ? "" : ANSI_DEFAULT;
 
   /**
-   * Write the [msg] with the pen's current settings
+   * Write the [msg] with the pen's current settings and then reset all
+   * attributes.
    */
-  String write(String msg) => "${down}$msg${up}";
+  String write(String msg) => "${this}$msg$up";
 
   black({bool bg: false, bool bold: false})    => _std(0, bold, bg);
   red({bool bg: false, bool bold: false})      => _std(1, bold, bg);
@@ -76,12 +89,12 @@ class AnsiPen {
    * See the pen color to a grey scale value between 0.0 and 1.0
    */
   gray({level: 1.0, bool bg: false}) =>
-      xterm(232 + (level.clamp(0.0, 1.0)*23).toInt(), bg: bg);
+      xterm(232 + (level.clamp(0.0, 1.0)*23).round(), bg: bg);
 
   _std(int color, bool bold, bool bg) => xterm(color + (bold ? 8 : 0), bg: bg);
 
   /**
-   * Directly index Xterm colors
+   * Directly index the xterm 256 color pallet.
    */
   xterm(int color, {bool bg: false}) {
     _pen = null;
@@ -93,6 +106,9 @@ class AnsiPen {
     }
   }
 
+  /**
+   * Reset the pen's attributes.
+   */
   reset() {
     _pen = null;
     _bcolor = _fcolor = null;
@@ -101,20 +117,34 @@ class AnsiPen {
   int _fcolor;
   int _bcolor;
   String _pen;
-
-  /// Reset the current foreground colors without altering styles. Does not modify [AnsiPen]!
-  static String resetForeground() => "${ANSI_ESC}39m";
-
-  /// Reset the current background colors without altering styles. Does not modify [AnsiPen]!
-  static String resetBackground() => "${ANSI_ESC}49,";
-
 }
 
-/// ANSI Control Sequence Introducer, signals the terminal for new settings.
+
+/**
+ *  ANSI Control Sequence Introducer, signals the terminal for new settings.
+ */
 String get ANSI_ESC => color_disabled ? "" : '\x1B[';
 
-/// Reset all colors and options for current SGRs to terminal defaults.
+
+/**
+ *  Reset all colors and options for current SGRs to terminal defaults.
+ */
 String get ANSI_DEFAULT => color_disabled ? "" : "${ANSI_ESC}0m";
+
+
+/**
+ * Defaults the terminal's foreground color without altering the background.
+ * Does not modify [AnsiPen]!
+ */
+String resetForeground() => "${ANSI_ESC}39m";
+
+
+/**
+ * Defaults the terminal's background color without altering the foreground.
+ * Does not modify [AnsiPen]!
+ */
+String resetBackground() => "${ANSI_ESC}49m";
+
 
 /**
  * Due to missing sprintf(), this is my cheap "%03d".
@@ -124,6 +154,9 @@ String _toSpace(int i, [int width = 3]) {
   return "${_toSpace(i ~/ 10, --width)}${i % 10}";
 }
 
+/**
+ * Return a reference table for foreground and background colors.
+ */
 String ansi_demo() {
   StringBuffer sb = new StringBuffer();
 
@@ -131,9 +164,9 @@ String ansi_demo() {
 
   for (int c = 0; c < 16; c++) {
     pen..reset()..white(bold: true)..xterm(c, bg: true);
-    sb.write("$pen ${_toSpace(c)} ");
+    sb.write(pen("${_toSpace(c)} "));
     pen..reset()..xterm(c);
-    sb.write("${pen.up}$pen ${_toSpace(c)} ");
+    sb.write(pen(" ${_toSpace(c)} "));
     if (c == 7 || c == 15) {
       sb.write("\n");
     }
@@ -146,11 +179,11 @@ String ansi_demo() {
         var c = r*36 + g*6 + b + 16;
         pen..reset()..rgb(r: r / 5, g: g / 5, b: b / 5, bg: true)..
             white(bold: true);
-        sb.write("${pen.up}$pen ${_toSpace(c)} ");
+        sb.write(pen(" ${_toSpace(c)} "));
         pen..reset()..rgb(r: r / 5, g: g / 5, b: b / 5);
-        sb.write("${pen.up}$pen ${_toSpace(c)} ");
+        sb.write(pen(" ${_toSpace(c)} "));
       }
-      sb.write("${pen.up} \n");
+      sb.write("\n");
     }
   }
 
@@ -159,11 +192,10 @@ String ansi_demo() {
       sb.write("\n");
     }
     pen..reset()..gray(level: c / 23, bg: true)..white(bold:true);
-    sb.write("${pen.up}$pen ${_toSpace(c + 232)} ");
+    sb.write(pen(" ${_toSpace(c + 232)} "));
     pen..reset()..gray(level: c / 23);
-    sb.write("${pen.up}$pen ${_toSpace(c + 232)} ");
+    sb.write(pen(" ${_toSpace(c + 232)} "));
 
   }
-  sb.write("${pen.up}");
   return sb.toString();
 }
