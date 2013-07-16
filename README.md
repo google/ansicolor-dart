@@ -12,18 +12,18 @@ Note: Be mindful of contrasting colors.  If you set "bright white" foreground an
 Foreground to bright white with default background:
 ```dart
 AnsiPen pen = new AnsiPen()..white(bold: true);
-print(pen.write("Bright white foreground") + " this text is default fg/bg");
+print(pen("Bright white foreground") + " this text is default fg/bg");
 ```
 
 Background as a peach, foreground as white:
 ```dart
 AnsiPen pen = new AnsiPen()..white()..rgb(r: 1.0, g: 0.8, b: 0.2);
-print(pen.write("White foreground with a peach background"));
+print(pen("White foreground with a peach background"));
 ```
 
 Rainbow Demo
 ------
 
-If you want a specific color, you can call the `xterm()` with the index listed in the rainbow below. To show the rainbow on your own terminal, just call `print(ansi_demo());`
+If you want a specific color, you can call the `xterm()` with the index listed in the rainbow below. To show the rainbow on your own terminal, just call `print(ansi_demo());` or run src/demo.dart
 
 ![alt tag](https://raw.github.com/google/ansicolor-dart/master/ansicolor-dart.png)
