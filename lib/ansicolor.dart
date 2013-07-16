@@ -80,21 +80,21 @@ class AnsiPen {
    */
   rgb({r: 1.0, g: 1.0, b: 1.0, bool bg: false}) =>
     xterm(
-        (r.clamp(0.0, 1.0)*5).toInt()*36 +
-        (g.clamp(0.0, 1.0)*5).toInt()*6 +
-        (b.clamp(0.0, 1.0)*5).toInt() + 16,
+        (r.clamp(0.0, 1.0) * 5).toInt() * 36 +
+        (g.clamp(0.0, 1.0) * 5).toInt() * 6 +
+        (b.clamp(0.0, 1.0) * 5).toInt() + 16,
         bg: bg);
 
   /**
    * See the pen color to a grey scale value between 0.0 and 1.0
    */
   gray({level: 1.0, bool bg: false}) =>
-      xterm(232 + (level.clamp(0.0, 1.0)*23).round(), bg: bg);
+      xterm(232 + (level.clamp(0.0, 1.0) * 23).round(), bg: bg);
 
   _std(int color, bool bold, bool bg) => xterm(color + (bold ? 8 : 0), bg: bg);
 
   /**
-   * Directly index the xterm 256 color pallet.
+   * Directly index the xterm 256 color palette.
    */
   xterm(int color, {bool bg: false}) {
     _pen = null;
@@ -195,7 +195,6 @@ String ansi_demo() {
     sb.write(pen(" ${_toSpace(c + 232)} "));
     pen..reset()..gray(level: c / 23);
     sb.write(pen(" ${_toSpace(c + 232)} "));
-
   }
   return sb.toString();
 }

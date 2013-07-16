@@ -1,5 +1,5 @@
 name: ansicolor
-version: 0.0.6
+version: 0.0.7
 author: John Thomas McDole <codefu@google.com>
 description: An xterm 256 color support library
 homepage: https://github.com/google/ansicolor-dart
