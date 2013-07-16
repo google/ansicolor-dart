@@ -65,43 +65,43 @@ void main() {
 
   test('system colors', () {
     AnsiPen pen = new AnsiPen();
-    expect((pen..black()).down,"\x1B[38;5;0m");
-    expect((pen..red()).down,"\x1B[38;5;1m");
-    expect((pen..green()).down,"\x1B[38;5;2m");
-    expect((pen..yellow()).down,"\x1B[38;5;3m");
-    expect((pen..blue()).down,"\x1B[38;5;4m");
-    expect((pen..magenta()).down,"\x1B[38;5;5m");
-    expect((pen..cyan()).down,"\x1B[38;5;6m");
-    expect((pen..white()).down,"\x1B[38;5;7m");
+    expect((pen..black()).down, "\x1B[38;5;0m");
+    expect((pen..red()).down, "\x1B[38;5;1m");
+    expect((pen..green()).down, "\x1B[38;5;2m");
+    expect((pen..yellow()).down, "\x1B[38;5;3m");
+    expect((pen..blue()).down, "\x1B[38;5;4m");
+    expect((pen..magenta()).down, "\x1B[38;5;5m");
+    expect((pen..cyan()).down, "\x1B[38;5;6m");
+    expect((pen..white()).down, "\x1B[38;5;7m");
 
-    expect((pen..black(bold: true)).down,"\x1B[38;5;8m");
-    expect((pen..red(bold: true)).down,"\x1B[38;5;9m");
-    expect((pen..green(bold: true)).down,"\x1B[38;5;10m");
-    expect((pen..yellow(bold: true)).down,"\x1B[38;5;11m");
-    expect((pen..blue(bold: true)).down,"\x1B[38;5;12m");
-    expect((pen..magenta(bold: true)).down,"\x1B[38;5;13m");
-    expect((pen..cyan(bold: true)).down,"\x1B[38;5;14m");
-    expect((pen..white(bold: true)).down,"\x1B[38;5;15m");
+    expect((pen..black(bold: true)).down, "\x1B[38;5;8m");
+    expect((pen..red(bold: true)).down, "\x1B[38;5;9m");
+    expect((pen..green(bold: true)).down, "\x1B[38;5;10m");
+    expect((pen..yellow(bold: true)).down, "\x1B[38;5;11m");
+    expect((pen..blue(bold: true)).down, "\x1B[38;5;12m");
+    expect((pen..magenta(bold: true)).down, "\x1B[38;5;13m");
+    expect((pen..cyan(bold: true)).down, "\x1B[38;5;14m");
+    expect((pen..white(bold: true)).down, "\x1B[38;5;15m");
 
-    expect((pen..reset()).down,"");
+    expect((pen..reset()).down, "");
 
-    expect((pen..black(bg: true)).down,"\x1B[48;5;0m");
-    expect((pen..red(bg: true)).down,"\x1B[48;5;1m");
-    expect((pen..green(bg: true)).down,"\x1B[48;5;2m");
-    expect((pen..yellow(bg: true)).down,"\x1B[48;5;3m");
-    expect((pen..blue(bg: true)).down,"\x1B[48;5;4m");
-    expect((pen..magenta(bg: true)).down,"\x1B[48;5;5m");
-    expect((pen..cyan(bg: true)).down,"\x1B[48;5;6m");
-    expect((pen..white(bg: true)).down,"\x1B[48;5;7m");
+    expect((pen..black(bg: true)).down, "\x1B[48;5;0m");
+    expect((pen..red(bg: true)).down, "\x1B[48;5;1m");
+    expect((pen..green(bg: true)).down, "\x1B[48;5;2m");
+    expect((pen..yellow(bg: true)).down, "\x1B[48;5;3m");
+    expect((pen..blue(bg: true)).down, "\x1B[48;5;4m");
+    expect((pen..magenta(bg: true)).down, "\x1B[48;5;5m");
+    expect((pen..cyan(bg: true)).down, "\x1B[48;5;6m");
+    expect((pen..white(bg: true)).down, "\x1B[48;5;7m");
 
-    expect((pen..black(bg: true, bold: true)).down,"\x1B[48;5;8m");
-    expect((pen..red(bg: true, bold: true)).down,"\x1B[48;5;9m");
-    expect((pen..green(bg: true, bold: true)).down,"\x1B[48;5;10m");
-    expect((pen..yellow(bg: true, bold: true)).down,"\x1B[48;5;11m");
-    expect((pen..blue(bg: true, bold: true)).down,"\x1B[48;5;12m");
-    expect((pen..magenta(bg: true, bold: true)).down,"\x1B[48;5;13m");
-    expect((pen..cyan(bg: true, bold: true)).down,"\x1B[48;5;14m");
-    expect((pen..white(bg: true, bold: true)).down,"\x1B[48;5;15m");
+    expect((pen..black(bg: true, bold: true)).down, "\x1B[48;5;8m");
+    expect((pen..red(bg: true, bold: true)).down, "\x1B[48;5;9m");
+    expect((pen..green(bg: true, bold: true)).down, "\x1B[48;5;10m");
+    expect((pen..yellow(bg: true, bold: true)).down, "\x1B[48;5;11m");
+    expect((pen..blue(bg: true, bold: true)).down, "\x1B[48;5;12m");
+    expect((pen..magenta(bg: true, bold: true)).down, "\x1B[48;5;13m");
+    expect((pen..cyan(bg: true, bold: true)).down, "\x1B[48;5;14m");
+    expect((pen..white(bg: true, bold: true)).down, "\x1B[48;5;15m");
   });
 
   test('rgb overflow', () {
@@ -128,7 +128,7 @@ void main() {
           "\x1B[38;5;${232 + i}m", reason: "fg failed at $i");
     }
 
-    expect((pen..reset()).down,"");
+    expect((pen..reset()).down, "");
 
     for (int i = 0; i < 24; i++) {
       expect((pen..gray(level: i / 23, bg: true)).down,
