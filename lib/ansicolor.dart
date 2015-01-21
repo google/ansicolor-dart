@@ -8,12 +8,16 @@
 ///
 library ansicolor;
 
+import 'package:supports_color/supports_color.dart';
+
 /**
  *  Globally enable or disable [AnsiPen] settings
  *  Handy for turning on and off embedded colors without commenting out code.
+ *
+ *  It is initialized to the negation of [supportsColor] so that it doesn't
+ *  need to be set explicitly in most cases.
  */
-bool color_disabled = false;
-
+bool color_disabled = !supportsColor;
 
 /**
  * Pen attributes for foreground and background colors.

@@ -3,15 +3,9 @@ library ansicolor_test;
 import 'package:unittest/unittest.dart';
 import "../lib/ansicolor.dart";
 
-class AnsiTestConfig extends SimpleConfiguration {
-  void onTestResult(TestCase testCase) {
-    color_disabled = false;
-    super.onTestResult(testCase);
-  }
-}
-
 void main() {
-  unittestConfiguration = new AnsiTestConfig();
+
+  setUp(() => color_disabled = false);
 
   test('foreground', () {
     AnsiPen pen = new AnsiPen()..

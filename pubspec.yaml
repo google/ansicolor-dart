@@ -4,4 +4,5 @@ author: John Thomas McDole <codefu@google.com>
 description: An xterm 256 color support library
 homepage: https://github.com/google/ansicolor-dart
 dev_dependencies:
-  unittest: ">=0.6.19"
+  supports_color: '>=0.1.1 <0.2.0'
+  unittest: '>=0.6.19'
