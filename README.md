@@ -5,7 +5,7 @@ Feel like you're missing some color in your terminal programs? Use AnsiPen to ad
 
 Easy to disable for production, just set `color_disabled = true` and all codes will be empty - no re-writing debug messages.  
 
-Note: `color_disabled` is a gobal variable for all pen colors.
+Note: `color_disabled` is a global variable for all pen colors.
 
 Example
 ------
