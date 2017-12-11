@@ -1,4 +1,4 @@
-import '../lib/ansicolor.dart';
+import 'package:ansicolor/ansicolor.dart';
 
 main() {
   print(ansi_demo());
