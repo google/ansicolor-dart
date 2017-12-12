@@ -1,7 +1,7 @@
 library ansicolor_test;
 
+import 'package:ansicolor/ansicolor.dart';
 import 'package:test/test.dart';
-import "../lib/ansicolor.dart";
 
 void main() {
   tearDown(() {
