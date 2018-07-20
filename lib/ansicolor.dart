@@ -1,11 +1,6 @@
 ///
 /// Copyright 2013 Google Inc. All Rights Reserved.
 ///
-/// ANSI/XTERM SGR (Select Graphics Rendering) support for 256 colors.
-/// Note: if you're using the dart editor, these won't look right in the
-/// terminal; disable via [color_disabled] or use Eclipse with the Dart and
-/// AnsiConsol plugins!
-///
 library ansicolor;
 
 /// Globally enable or disable [AnsiPen] settings
@@ -32,11 +27,11 @@ class AnsiPen {
 
     StringBuffer sb = new StringBuffer();
     if (_fcolor != null) {
-      sb.write("${ANSI_ESC}38;5;${_fcolor}m");
+      sb.write("${ansi_esc}38;5;${_fcolor}m");
     }
 
     if (_bcolor != null) {
-      sb.write("${ANSI_ESC}48;5;${_bcolor}m");
+      sb.write("${ansi_esc}48;5;${_bcolor}m");
     }
 
     _pen = sb.toString();
@@ -47,7 +42,7 @@ class AnsiPen {
   String get down => this.toString();
 
   /// Resets all pen attributes in the terminal.
-  String get up => color_disabled ? "" : ANSI_DEFAULT;
+  String get up => color_disabled ? "" : ansi_default;
 
   /// Write the [msg] with the pen's current settings and then reset all
   /// attributes.
@@ -100,15 +95,15 @@ class AnsiPen {
 }
 
 /// ANSI Control Sequence Introducer, signals the terminal for new settings.
-String get ANSI_ESC => color_disabled ? "" : '\x1B[';
+String get ansi_esc => color_disabled ? "" : '\x1B[';
 
 /// Reset all colors and options for current SGRs to terminal defaults.
-String get ANSI_DEFAULT => color_disabled ? "" : "${ANSI_ESC}0m";
+String get ansi_default => color_disabled ? "" : "${ansi_esc}0m";
 
 /// Defaults the terminal's foreground color without altering the background.
 /// Does not modify [AnsiPen]!
-String resetForeground() => "${ANSI_ESC}39m";
+String resetForeground() => "${ansi_esc}39m";
 
 /// Defaults the terminal's background color without altering the foreground.
 /// Does not modify [AnsiPen]!
-String resetBackground() => "${ANSI_ESC}49m";
+String resetBackground() => "${ansi_esc}49m";

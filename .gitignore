@@ -2,4 +2,6 @@ packages
 pubspec.lock
 .project
 .children
+.packages
+.dart_tool
 *~
