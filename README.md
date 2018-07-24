@@ -26,6 +26,6 @@ print(pen("White foreground with a peach background"));
 Rainbow Demo
 ------
 
-If you want a specific color, you can call the `xterm()` with the index listed in the rainbow below. To show the rainbow on your own terminal, just call `print(ansi_demo());` or run src/demo.dart
+If you want a specific color, you can call the `xterm()` with the index listed in the rainbow below. To show the rainbow on your own terminal, `pub run examples/ansicolor.dart`
 
 ![alt tag](https://raw.github.com/google/ansicolor-dart/master/ansicolor-dart.png)
