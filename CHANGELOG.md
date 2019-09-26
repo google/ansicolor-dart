@@ -1,3 +1,7 @@
+## 1.0.3
+* Minor updates to optional name style (s/:/=)
+* Make the description better
+
 ## 1.0.2
 
 * Adding this CHANGELOG.md

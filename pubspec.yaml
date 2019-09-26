@@ -1,9 +1,12 @@
 name: ansicolor
-version: 1.0.2
+version: 1.0.3
 authors:
 - John Thomas McDole <codefu@google.com>
 - Jason Daly <dalyj@google.com>
-description: An xterm 256 color support library for making pretty logs.
+description: >-
+  Looking to add some color to your terminal logs? `ansicolor` is an xterm-256
+  color support library that lets you change the foreground and background
+  color of your text.
 homepage: https://github.com/google/ansicolor-dart
 environment:
   sdk: ">=2.0.0-dev.36.0 <3.0.0"

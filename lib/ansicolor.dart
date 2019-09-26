@@ -53,17 +53,17 @@ class AnsiPen {
   /// attributes.
   String write(String msg) => "${this}$msg$up";
 
-  void black({bool bg: false, bool bold: false}) => _std(0, bold, bg);
-  void red({bool bg: false, bool bold: false}) => _std(1, bold, bg);
-  void green({bool bg: false, bool bold: false}) => _std(2, bold, bg);
-  void yellow({bool bg: false, bool bold: false}) => _std(3, bold, bg);
-  void blue({bool bg: false, bool bold: false}) => _std(4, bold, bg);
-  void magenta({bool bg: false, bool bold: false}) => _std(5, bold, bg);
-  void cyan({bool bg: false, bool bold: false}) => _std(6, bold, bg);
-  void white({bool bg: false, bool bold: false}) => _std(7, bold, bg);
+  void black({bool bg = false, bool bold = false}) => _std(0, bold, bg);
+  void red({bool bg = false, bool bold = false}) => _std(1, bold, bg);
+  void green({bool bg = false, bool bold = false}) => _std(2, bold, bg);
+  void yellow({bool bg = false, bool bold = false}) => _std(3, bold, bg);
+  void blue({bool bg = false, bool bold = false}) => _std(4, bold, bg);
+  void magenta({bool bg = false, bool bold = false}) => _std(5, bold, bg);
+  void cyan({bool bg = false, bool bold = false}) => _std(6, bold, bg);
+  void white({bool bg = false, bool bold = false}) => _std(7, bold, bg);
 
   /// Sets the pen color to the rgb value between 0.0..1.0.
-  void rgb({r: 1.0, g: 1.0, b: 1.0, bool bg: false}) => xterm(
+  void rgb({r = 1.0, g = 1.0, b = 1.0, bool bg = false}) => xterm(
       (r.clamp(0.0, 1.0) * 5).toInt() * 36 +
           (g.clamp(0.0, 1.0) * 5).toInt() * 6 +
           (b.clamp(0.0, 1.0) * 5).toInt() +
@@ -71,14 +71,14 @@ class AnsiPen {
       bg: bg);
 
   /// Sets the pen color to a grey scale value between 0.0 and 1.0.
-  void gray({level: 1.0, bool bg: false}) =>
+  void gray({level = 1.0, bool bg = false}) =>
       xterm(232 + (level.clamp(0.0, 1.0) * 23).round(), bg: bg);
 
   void _std(int color, bool bold, bool bg) =>
       xterm(color + (bold ? 8 : 0), bg: bg);
 
   /// Directly index the xterm 256 color palette.
-  void xterm(int color, {bool bg: false}) {
+  void xterm(int color, {bool bg = false}) {
     _pen = null;
     var c = color.toInt().clamp(0, 256);
     if (bg) {
@@ -88,6 +88,12 @@ class AnsiPen {
     }
   }
 
+  void invert() {
+    var tmp = _fcolor;
+    _fcolor = _bcolor;
+    _bcolor = tmp;
+  }
+
   ///Resets the pen's attributes.
   void reset() {
     _pen = null;
@@ -95,7 +101,9 @@ class AnsiPen {
   }
 
   int _fcolor;
+  int get foreground => _fcolor;
   int _bcolor;
+  int get background => _bcolor;
   String _pen;
 }
 
