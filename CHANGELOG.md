@@ -1,3 +1,7 @@
+## 1.0.5
+
+* Add types to API calls
+
 ## 1.0.4
 
 * Update styling, remove `new`, use `final` or `var`.

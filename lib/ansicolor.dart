@@ -64,7 +64,7 @@ class AnsiPen {
   void white({bool bg = false, bool bold = false}) => _std(7, bold, bg);
 
   /// Sets the pen color to the rgb value between 0.0..1.0.
-  void rgb({r = 1.0, g = 1.0, b = 1.0, bool bg = false}) => xterm(
+  void rgb({num r = 1.0, num g = 1.0, num b = 1.0, bool bg = false}) => xterm(
       (r.clamp(0.0, 1.0) * 5).toInt() * 36 +
           (g.clamp(0.0, 1.0) * 5).toInt() * 6 +
           (b.clamp(0.0, 1.0) * 5).toInt() +
@@ -72,7 +72,7 @@ class AnsiPen {
       bg: bg);
 
   /// Sets the pen color to a grey scale value between 0.0 and 1.0.
-  void gray({level = 1.0, bool bg = false}) =>
+  void gray({num level = 1.0, bool bg = false}) =>
       xterm(232 + (level.clamp(0.0, 1.0) * 23).round(), bg: bg);
 
   void _std(int color, bool bold, bool bg) =>
@@ -81,7 +81,7 @@ class AnsiPen {
   /// Directly index the xterm 256 color palette.
   void xterm(int color, {bool bg = false}) {
     _dirty = true;
-    final c = color.toInt().clamp(0, 256);
+    final c = color.clamp(0, 256);
     if (bg) {
       _bcolor = c;
     } else {
