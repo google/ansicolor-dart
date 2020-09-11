@@ -73,7 +73,7 @@ class AnsiPen {
 
   /// Sets the pen color to a grey scale value between 0.0 and 1.0.
   void gray({level = 1.0, bool bg = false}) =>
-      xterm(232 + (level.clamp(0.0, 1.0) * 23).round() as int, bg: bg);
+      xterm(232 + (level.clamp(0.0, 1.0) * 23).round(), bg: bg);
 
   void _std(int color, bool bold, bool bg) =>
       xterm(color + (bold ? 8 : 0), bg: bg);
