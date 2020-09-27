@@ -19,7 +19,7 @@ bool color_disabled = false;
 class AnsiPen {
   /// Treat a pen instance as a function such that `pen('msg')` is the same as
   /// `pen.write('msg')`.
-  String call(String msg) => write(msg);
+  String call(Object msg) => write(msg);
 
   /// Allow pen colors to be used in a string.
   ///
@@ -50,9 +50,9 @@ class AnsiPen {
   /// Resets all pen attributes in the terminal.
   String get up => color_disabled ? '' : ansi_default;
 
-  /// Write the [msg] with the pen's current settings and then reset all
-  /// attributes.
-  String write(String msg) => '${this}$msg$up';
+  /// Write the [msg.toString()] with the pen's current settings and then
+  /// reset all attributes.
+  String write(Object msg) => '${this}$msg$up';
 
   void black({bool bg = false, bool bold = false}) => _std(0, bold, bg);
   void red({bool bg = false, bool bold = false}) => _std(1, bold, bg);
