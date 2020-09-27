@@ -3,6 +3,7 @@ library ansicolor_test;
 import 'package:ansicolor/ansicolor.dart';
 import 'package:test/test.dart';
 
+@TestOn('dart-vm')
 void main() {
   setUp(() {
     ansiColorDisabled = false;

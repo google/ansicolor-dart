@@ -1,6 +1,7 @@
 import 'package:ansicolor/ansicolor.dart';
 
 void main() {
+  ansiColorDisabled = false;
   print(ansi_demo());
 }
 
