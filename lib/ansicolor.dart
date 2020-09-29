@@ -7,10 +7,23 @@
 ///     AnsiConsol plugins!
 library ansicolor;
 
-/// Globally enable or disable [AnsiPen] settings
+import 'src/supports_ansi.dart'
+    if (dart.library.io) 'src/supports_ansi_io.dart'
+    if (dart.library.html) 'src/supports_ansi_web.dart';
+
+/// Globally enable or disable [AnsiPen] settings.
+///
+/// Note: defaults to environment support; but can be overridden.
 ///
 /// Handy for turning on and off embedded colors without commenting out code.
-bool color_disabled = false;
+bool ansiColorDisabled = !supportsAnsiColor;
+
+@Deprecated(
+    'Will be removed in future releases in favor of [ansiColorDisabled]')
+bool get color_disabled => ansiColorDisabled;
+@Deprecated(
+    'Will be removed in future releases in favor of [ansiColorDisabled]')
+set color_disabled(bool disabled) => ansiColorDisabled = disabled;
 
 /// Pen attributes for foreground and background colors.
 ///
@@ -19,7 +32,7 @@ bool color_disabled = false;
 class AnsiPen {
   /// Treat a pen instance as a function such that `pen('msg')` is the same as
   /// `pen.write('msg')`.
-  String call(String msg) => write(msg);
+  String call(Object msg) => write(msg);
 
   /// Allow pen colors to be used in a string.
   ///
@@ -27,16 +40,16 @@ class AnsiPen {
   ///     changed by another pen or [up].
   @override
   String toString() {
-    if (color_disabled) return '';
+    if (ansiColorDisabled) return '';
     if (!_dirty) return _pen;
 
     final sb = StringBuffer();
     if (_fcolor != -1) {
-      sb.write('${ansi_esc}38;5;${_fcolor}m');
+      sb.write('${ansiEscape}38;5;${_fcolor}m');
     }
 
     if (_bcolor != -1) {
-      sb.write('${ansi_esc}48;5;${_bcolor}m');
+      sb.write('${ansiEscape}48;5;${_bcolor}m');
     }
 
     _dirty = false;
@@ -48,11 +61,11 @@ class AnsiPen {
   String get down => '${this}';
 
   /// Resets all pen attributes in the terminal.
-  String get up => color_disabled ? '' : ansi_default;
+  String get up => ansiColorDisabled ? '' : ansiDefault;
 
-  /// Write the [msg] with the pen's current settings and then reset all
-  /// attributes.
-  String write(String msg) => '${this}$msg$up';
+  /// Write the [msg.toString()] with the pen's current settings and then
+  /// reset all attributes.
+  String write(Object msg) => '${this}$msg$up';
 
   void black({bool bg = false, bool bold = false}) => _std(0, bold, bg);
   void red({bool bg = false, bool bold = false}) => _std(1, bold, bg);
@@ -103,15 +116,31 @@ class AnsiPen {
 }
 
 /// ANSI Control Sequence Introducer, signals the terminal for new settings.
-String get ansi_esc => color_disabled ? '' : '\x1B[';
+const ansiEscape = '\x1B[';
+
+@Deprecated('Will be removed in future releases')
+const ansi_esc = ansiEscape;
 
 /// Reset all colors and options for current SGRs to terminal defaults.
-String get ansi_default => color_disabled ? '' : '${ansi_esc}0m';
+const ansiDefault = '${ansiEscape}0m';
 
-/// Defaults the terminal's foreground color without altering the background.
-/// Does not modify [AnsiPen]!
-String resetForeground() => '${ansi_esc}39m';
+@Deprecated('Will be removed in future releases')
+const ansi_default = ansiDefault;
 
-/// Defaults the terminal's background color without altering the foreground.
+/// Ansi codes that default the terminal's foreground color without
+/// altering the background, when printed.
+///
 /// Does not modify [AnsiPen]!
-String resetBackground() => '${ansi_esc}49m';
+const ansiResetForeground = '${ansiEscape}39m';
+
+@Deprecated('Will be removed in future releases')
+String resetForeground() => ansiResetForeground;
+
+///Ansi codes that default the terminal's background color without
+///altering the foreground, when printed.
+///
+/// Does not modify [AnsiPen]!
+const ansiResetBackground = '${ansiEscape}49m';
+
+@Deprecated('Will be removed in future releases')
+String resetBackground() => ansiResetBackground;

@@ -3,9 +3,14 @@ library ansicolor_test;
 import 'package:ansicolor/ansicolor.dart';
 import 'package:test/test.dart';
 
+@TestOn('dart-vm')
 void main() {
+  setUp(() {
+    ansiColorDisabled = false;
+  });
+
   tearDown(() {
-    color_disabled = false;
+    ansiColorDisabled = false;
   });
 
   test('foreground', () {
@@ -30,7 +35,8 @@ void main() {
     final pen = AnsiPen()
       ..rgb(r: 1.0, g: 0.8, b: 0.2)
       ..rgb(r: 0.4, g: 0.8, b: 1.0, bg: true);
-    expect(pen.write('Test${resetBackground()} Text${resetForeground()}Test'),
+    expect(
+        pen.write('Test${ansiResetBackground} Text${ansiResetForeground}Test'),
         '\x1B[38;5;221m\x1B[48;5;117mTest\x1B[49m Text\x1B[39mTest\x1B[0m');
   });
 
@@ -127,12 +133,11 @@ void main() {
     }
   });
 
-  test('color_disabled', () {
-    color_disabled = false;
+  test('ansiColorDisabled', () {
     final pen = AnsiPen()
       ..rgb(r: 1.0, g: 0.8, b: 0.2)
       ..rgb(r: 0.4, g: 0.8, b: 1.0, bg: true);
-    color_disabled = true;
+    ansiColorDisabled = true;
     expect(pen.write('Test Text'), 'Test Text');
   });
 }
