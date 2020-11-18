@@ -1,3 +1,10 @@
+## 1.1.0
+
+* Round up release closing out some older issues.
+  * Try to detect is ANSI is supported
+  * Update naming style; deprecate the old names.
+  * write() and call() take object now.
+
 ## 1.0.5
 
 * Add types to API calls
