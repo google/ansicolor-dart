@@ -5,7 +5,7 @@
 ## 1.1.0
 
 * Round up release closing out some older issues.
-  * Try to detect is ANSI is supported
+  * Try to detect if ANSI is supported
   * Update naming style; deprecate the old names.
   * write() and call() take object now.
 
