@@ -1,3 +1,7 @@
+## 2.0.0-nullsafety.0
+
+* This package was already nullsafe; this just makes it official.
+
 ## 1.1.1
 
 * Pre-upgrade for nullsafety
