@@ -1,3 +1,7 @@
+## 2.0.0-nullsafety.0
+
+* pre-release with support for [null_safety](https://dart.dev/null-safety/migration-guide).
+
 ## 1.1.0
 
 * Round up release closing out some older issues.
