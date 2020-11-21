@@ -46,6 +46,12 @@ void main() {
         pen.write('Test Text'), '\x1B[38;5;200m\x1B[48;5;100mTest Text\x1B[0m');
   });
 
+  test('xterm index clamped', () {
+    final pen = AnsiPen()..xterm(256)..xterm(-1, bg: true);
+    expect(
+        pen.write('Test Text'), '\x1B[38;5;255m\x1B[48;5;0mTest Text\x1B[0m');
+  });
+
   test('call() == write()', () {
     final pen = AnsiPen()
       ..rgb(r: 1.0, g: 0.8, b: 0.2)

@@ -94,7 +94,11 @@ class AnsiPen {
   /// Directly index the xterm 256 color palette.
   void xterm(int color, {bool bg = false}) {
     _dirty = true;
-    final c = color.clamp(0, 256);
+    final c = color < 0
+        ? 0
+        : color > 255
+            ? 255
+            : color;
     if (bg) {
       _bcolor = c;
     } else {

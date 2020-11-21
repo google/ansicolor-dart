@@ -1,3 +1,9 @@
+## 1.1.1
+
+* Pre-upgrade for nullsafety
+* `clamp` has a `num` signature, also doesn't follow inclusive-exclusive
+  ranges, `[)`, and is instead inclusive-inclusive, `()`.
+
 ## 1.1.0
 
 * Round up release closing out some older issues.

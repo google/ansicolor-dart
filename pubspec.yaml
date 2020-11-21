@@ -1,5 +1,5 @@
 name: ansicolor
-version: 1.1.0
+version: 1.1.1
 description: >-
   Looking to add some color to your terminal logs? `ansicolor` is an xterm-256
   color support library that lets you change the foreground and background
