@@ -23,6 +23,12 @@ AnsiPen pen = new AnsiPen()..white()..rgb(r: 1.0, g: 0.8, b: 0.2);
 print(pen("White foreground with a peach background"));
 ```
 
+Note
+------
+If color isn't working for you; try setting `ansiColorDisabled = false;`. We're relying on the `stdio` object to inform us of ANSI terminal support. Sometimes this is wrong.
+
+Prior versions of this library just turned on color by default.
+
 Rainbow Demo
 ------
 
