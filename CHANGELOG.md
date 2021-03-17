@@ -1,3 +1,7 @@
+## 2.0.1
+
+* Update to default `2.12.0` for null safety before publishing.
+
 ## 2.0.0-nullsafety.0
 
 * This package was already nullsafe; this just makes it official.
