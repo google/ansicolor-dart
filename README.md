@@ -19,7 +19,7 @@ print(pen("Bright white foreground") + " this text is default fg/bg");
 
 Background as a peach, foreground as white:
 ```dart
-AnsiPen pen = new AnsiPen()..white()..rgb(r: 1.0, g: 0.8, b: 0.2);
+AnsiPen pen = new AnsiPen()..white()..rgb(r: 1.0, g: 0.8, b: 0.2, bg: true);
 print(pen("White foreground with a peach background"));
 ```
 
