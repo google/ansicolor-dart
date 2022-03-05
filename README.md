@@ -13,13 +13,13 @@ Note: Be mindful of contrasting colors.  If you set "bright white" foreground an
 
 Foreground to bright white with default background:
 ```dart
-AnsiPen pen = new AnsiPen()..white(bold: true);
+AnsiPen pen = AnsiPen()..white(bold: true);
 print(pen("Bright white foreground") + " this text is default fg/bg");
 ```
 
 Background as a peach, foreground as white:
 ```dart
-AnsiPen pen = new AnsiPen()..white()..rgb(r: 1.0, g: 0.8, b: 0.2);
+AnsiPen pen = AnsiPen()..white()..rgb(r: 1.0, g: 0.8, b: 0.2);
 print(pen("White foreground with a peach background"));
 ```
 
