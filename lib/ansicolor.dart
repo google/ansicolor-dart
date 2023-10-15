@@ -113,13 +113,13 @@ class AnsiPen {
     _bcolor = _fcolor = -1;
   }
 
-  /// Get the foreground color index.
+  /// Returns the pen's foreground color
   int get fcolor => _fcolor;
 
-  /// Get the background color index.
+  /// Returns the pen's background color index.
   int get bcolor => _bcolor;
 
-  /// Get whether the pen attributes are dirty.
+  /// Returns whether the pen's attributes are dirty.
   bool get dirty => _dirty;
 
   int _fcolor = -1;
