@@ -3,7 +3,7 @@
 ///
 /// ANSI/XTERM SGR (Select Graphics Rendering) support for 256 colors.
 /// Note: if you're using the dart editor, these won't look right in the
-///     terminal; disable via [color_disabled] or use Eclipse with the Dart and
+///     terminal; disable via [ansiColorDisabled] or use Eclipse with the Dart and
 ///     AnsiConsol plugins!
 library ansicolor;
 
@@ -20,9 +20,11 @@ bool ansiColorDisabled = !supportsAnsiColor;
 
 @Deprecated(
     'Will be removed in future releases in favor of [ansiColorDisabled]')
+// ignore: non_constant_identifier_names
 bool get color_disabled => ansiColorDisabled;
 @Deprecated(
     'Will be removed in future releases in favor of [ansiColorDisabled]')
+// ignore: non_constant_identifier_names
 set color_disabled(bool disabled) => ansiColorDisabled = disabled;
 
 /// Pen attributes for foreground and background colors.
