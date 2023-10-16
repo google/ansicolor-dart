@@ -113,6 +113,15 @@ class AnsiPen {
     _bcolor = _fcolor = -1;
   }
 
+  /// Returns the pen's foreground color
+  int get fcolor => _fcolor;
+
+  /// Returns the pen's background color index.
+  int get bcolor => _bcolor;
+
+  /// Returns whether the pen's attributes are dirty.
+  bool get dirty => _dirty;
+
   int _fcolor = -1;
   int _bcolor = -1;
   String _pen = '';
