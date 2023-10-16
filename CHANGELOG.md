@@ -1,4 +1,6 @@
-## 2.0.2-dev
+## 2.0.2
+* Public getters for pen colors.
+* Updated to Dart 3.0
 
 ## 2.0.1
 
