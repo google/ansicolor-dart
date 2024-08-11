@@ -9,7 +9,7 @@ library ansicolor;
 
 import 'src/supports_ansi.dart'
     if (dart.library.io) 'src/supports_ansi_io.dart'
-    if (dart.library.html) 'src/supports_ansi_web.dart';
+    if (dart.library.js_interop) 'src/supports_ansi_web.dart';
 
 /// Globally enable or disable [AnsiPen] settings.
 ///
