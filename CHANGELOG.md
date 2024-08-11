@@ -1,4 +1,11 @@
+# Changes
+
+## 2.0.3
+
+* WASM support
+
 ## 2.0.2
+
 * Public getters for pen colors.
 * Updated to Dart 3.0
 
